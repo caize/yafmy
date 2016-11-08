@@ -1,0 +1,214 @@
+<?php $this->display("common/header.phtml");?>
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+	<!-- #section:basics/sidebar -->
+	<?php $this->display("common/left.phtml");?>
+	<!-- /section:basics/sidebar -->
+	<div class="main-content">
+		<div class="main-content-inner">
+			<div class="page-content">
+				<link rel="stylesheet" type="text/css"  href="/extend/sldate/daterangepicker-bs3.css" />
+				<form name="admin_list_sea" class="form-search form-horizontal" method="post" action="{:U('news_list')}">
+					<div class="row maintop">
+						<div class="col-xs-12 col-sm-4">
+							<select name="keytype">
+								<option value="news_title">按标题</option>
+								<option value="news_auto">按发布人ID</option>
+								<option value="news_author">按发布人名</option>
+							</select>
+							<select name="diyflag">
+								<option value="">按属性</option>
+								<?php
+								foreach($attr as $key => $val){
+									echo "<option value='".$val['diyflag_value']."'>{$val['diyflag_name']}</option>";
+								}?>
+							</select>
+							<select name="opentype_check">
+								<option value="" >状态</option>
+								<option value="1" >已审</option>
+								<option value="0" >未审</option>
+							</select>
+						</div>
+
+						<div class="col-xs-12 col-sm-3 hidden-xs btn-sespan">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+								</span>
+								<input type="text"  name="reservation" id="reservation" class="sl-date" value="" placeholder="点击选择日期范围"/>
+							</div>
+						</div>
+
+
+						<div class="col-xs-12 col-sm-3 btn-sespan">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="ace-icon fa fa-check"></i>
+								</span>
+								<input type="text" name="key" id="key" class="form-control search-query admin_sea" value="" placeholder="输入需查询的关键字" />
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-xs btm-input btn-purple">
+										<span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+										搜索
+									</button>
+								</span>
+							</div>
+						</div>
+
+						<div class="input-group-btn">
+							<a href="{:U('news_list')}">
+								<button type="button" class="btn btn-xs all-btn btn-purple">
+									<span class="ace-icon fa fa-globe icon-on-right bigger-110"></span>
+									显示全部
+								</button>
+							</a>
+						</div>
+
+
+					</div>
+				</form>
+				<div class="row">
+					<div class="col-xs-12">
+						<div>
+							<form id="alldel" name="alldel" method="post" action="{:U('news_alldel')}" >
+								<input name="p" id="p" value="{:I('p',1)}" type="hidden" />
+								<div class="table-responsive">
+									<table class="table table-striped table-bordered table-hover" id="dynamic-table">
+										<thead>
+										<tr>
+											<th>
+												<label class="pos-rel">
+													<input type="checkbox" class="ace"  id='chkAll' onclick='CheckAll(this.form)' value="全选"/>
+													<span class="lbl"></span>
+												</label>
+											</th>
+											<th class="hidden-xs">ID</th>
+											<th>文章标题</th>
+											<th class="hidden-sm hidden-xs">所属栏目</th>
+											<th class="hidden-sm hidden-xs">文章属性</th>
+											<th class="hidden-xs">点击</th>
+											<th class="hidden-xs">审核</th>
+											<th class="hidden-xs">发布时间</th>
+											<th class="hidden-xs">操作</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td colspan="9" class="">Loading data from server</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<?php //$this->display("common/header_nav.phtml");?>
+			</div><!-- /.page-content -->
+		</div>
+	</div><!-- /.main-content -->
+</div>
+<?php $this->display("common/footer.phtml");?>
+
+<!--datatables--->
+<link rel="stylesheet" type="text/css" media="all" href="/extend/datatables/css/demo_page.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/extend/datatables/css/demo_table.css" />
+
+<!--style type="text/css" title="currentStyle">
+	@import "/extend/datatables/css/demo_page.css";
+	/@import "/extend/datatables/css/demo_table.css";
+</style-->
+<script type="text/javascript" src="/extend/datatables/js/jquery.dataTables.js"></script>
+
+
+<!--日期-->
+<script type="text/javascript" src="/extend/sldate/moment.js"></script>
+<script type="text/javascript" src="/extend/sldate/daterangepicker.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		//选择日期
+		$('#reservation').daterangepicker(null, function (start, end, label) {
+			console.log(start.toISOString(), end.toISOString(), label);
+		});
+
+		//数据表
+		dataTableFun();
+		function dataTableFun() {
+			$('#dynamic-table').dataTable({
+				sDom: "<'row'<'dataTables_header clearfix'<'col-md-4'l><'col-md-8'Tf>r>>t<'row'<'dataTables_footer clearfix'<'col-md-6'i><'col-md-6'p>>>",
+				"bDestroy": true,//销毁已经存在的Datatables实例
+				"bAutoWidth": false,//宽度是否自动，感觉不好使的时候关掉试试
+				"bProcessing": false,//开关，以指定当正在处理数据的时候，是否显示“正在处理数据”这个提示信息
+				"bServerSide": true,//开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值
+				"sPaginationType": "full_numbers",//用于指定分页器风格  bs_full
+				"sAjaxSource": "/news-ajaxtables.html",//给服务器发请求的url
+				"iDisplayLength": 8,//每页显示多少信息
+				"bPaginate": true, //开始翻页功能
+				"bInfo": true,//页脚信息,就是Showing 1 to 10 of 57 entries
+				"bStateSave": true, //保存当前页的状态  当修改或删除时保存到当前页
+				"aoColumnDefs": [{"bSortable": false, "aTargets": [0, 1 ,3,4,5]}],//指定某些字段不能排序
+				//"order": [[2, 'desc'] , [0, 'desc']],//对应的字段排序
+				"order": [[2, 'desc'] ],//对应的字段排序
+				"aLengthMenu": [[8, 10, 20, 50], [8, 10, 20, 50]],//显示搜索的条目数
+				//"sDom":			'<"top"l>rt<"wrapper"><"wrapper"p><"clear">', //隐藏搜索框
+				//"sDom":			'rt<"wrapper"><"wrapper"p>', //隐藏显示多少条信息
+				"oLanguage": {
+					"sLengthMenu": "每页显示 _MENU_ 条记录",
+					"sZeroRecords": "现在没有MT内容！！！",//提示信息
+					"sInfo": "从 _START_ - _END_ [共 _TOTAL_ 条数据]",
+					"sInfoEmpty": "现在没有MT内容！！！",
+					"sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+					"oPaginate": {
+						"sFirst": "首页",
+						"sPrevious": "上一页",
+						"sNext": "下一页",
+						"sLast": "尾页"
+					},
+					//"sProcessing": "<img src='./logo.png' />"
+				},
+
+				//post传递过去的参数
+				"fnServerParams": function (aoData) {
+					aoData.push(
+						//{"name": "sub", "value": 'yes'}
+					);
+				},
+				//使用post方式
+				"fnServerData": function (sSource, aoData, fnCallback) {
+					$.ajax({
+						"dataType": 'json',
+						"type": "POST",
+						"url": sSource,
+						"data": aoData,
+						"async": true,
+						"beforeSend": function () {
+
+						},
+						"success": fnCallback,
+						"complete": function (data) {
+							//console.log(data);
+						},
+					} );},
+				"aoColumns": [
+					{"sName":"news_title" },
+					{"sName":"news_titleshort" },
+					{"sName":"news_columnid" },
+					{"sName":"news_key" },
+					{"sName":"news_open" },
+					{"sName":"news_source" },
+					{"sName":"news_hits" },
+					{"sName":"news_time" },
+					{"sName":"n_id" }
+				]
+				//$_GET['sColumns']将接收到aoColumns传递数据
+
+			} );
+		}
+
+		//datatable ajax page  end
+	});
+
+</script>
+

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+{include '../public/header.html'}
+<body> 
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- 顶部导航开始 -->
+	{include '../public/top.html'}
+
+    <!-- 左侧导航部分 -->
+	{include '../public/left_menu.html'}
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+            <!--TITLE -->
+            <div class="row">
+                <div id="paper-top">
+					
+                    <div class="col-lg-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-window"></i> 
+                            <span>控制面板</span>
+                        </h2>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">
+							<!-- 主体提示欢迎信息 -->
+                            <div class="alert">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <span class="tittle-alert entypo-info-circled"></span>
+                                欢迎回来，&nbsp;
+                                <strong>simon!</strong>&nbsp;&nbsp;您最后的登录时间是昨天下午16:54
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="#"><span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+            <!-- BREADCRUMB -->
+            <ul id="breadcrumb">
+                <li><span class="entypo-home"></span></li>
+                <li><i class="fa fa-lg fa-angle-right"></i></li>
+                <li><a href="#" title="Sample page 1">Home</a></li>
+                <li><i class="fa fa-lg fa-angle-right"></i></li>
+                <li><a href="#" title="Sample page 1">Dashboard</a></li>
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    </div>
+                </li>
+            </ul>
+
+            <!-- END OF BREADCRUMB -->
+            <div id="paper-middle">
+                <div id="mapContainer"></div>
+            </div>
+			
+            <div class="content-wrap">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="chart-wrap">
+                            <div class="chart-dash">
+                                <!-- <div id="sparkline"></div> -->
+                                <div id="placeholder" style="width:100%;height:200px;"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="speed">
+                                        <h2>Speed Avarage</h2>
+                                        <h1>74
+                                            <span>Km / hours</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="traffic">
+                                        <h2>Traffic per day</h2>
+                                        <h1>2.5874</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="traffic-rates">
+                                        <h4>Traffic Rates</h4>
+                                        <h1>76 %
+                                            <span>-1,2 %</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="traffic-rates">
+                                        <h4>Traffic Rates</h4>
+                                        <h1>25 %
+                                            <span>-1,8 %</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="traffic-rates">
+                                        <h4>Traffic Rates</h4>
+                                        <h1>83 %
+                                            <span>-1,9 %</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="weather-wrap">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="temperature"><b>Monday</b>, 07:30 AM
+                                        <span>F</span>
+                                        <span><b>C</b>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="weather-icon">
+                                        <i class="wi-day-lightning"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="weather-text">
+                                        <h2>Berlin
+                                            <br><i>Day Lightning</i>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="weather-text">
+                                        <h3><i class="wi-thermometer"></i>18<i class="wi-celcius"></i>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="weather-dash">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="daily-weather">
+                                            <h2>Mon</h2>
+                                            <h3>85
+                                                <span><i class="wi-fahrenheit"></i>
+                                                </span>
+                                            </h3>
+                                            <h4>
+                                                <span><i class="wi-day-lightning"></i>
+                                                </span>
+                                            </h4>
+                                            <h5>15
+                                                <i>km/h</i>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="daily-weather">
+                                            <h2>Tue</h2>
+                                            <h3>81
+                                                <span><i class="wi-fahrenheit"></i>
+                                                </span>
+                                            </h3>
+                                            <h4><i class="wi-day-cloudy"></i>
+                                            </h4>
+                                            <h5>12
+                                                <i>km/h</i>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="daily-weather">
+                                            <h2>Wed</h2>
+                                            <h3>83
+                                                <span><i class="wi-fahrenheit"></i>
+                                                </span>
+                                            </h3>
+                                            <h4><i class="wi-rain-mix"></i>
+                                            </h4>
+                                            <h5>14
+                                                <i>km/h</i>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="daily-weather">
+                                            <h2>Thu</h2>
+                                            <h3>80
+                                                <span><i class="wi-fahrenheit"></i>
+                                                </span>
+                                            </h3>
+                                            <h4><i class="wi-day-sunny"></i>
+                                            </h4>
+                                            <h5>15
+                                                <i>km/h</i>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="daily-weather">
+                                            <h2>Fri</h2>
+                                            <h3>79
+                                                <span><i class="wi-fahrenheit"></i>
+                                                </span>
+                                            </h3>
+                                            <h4><i class="wi-day-storm-showers"></i>
+                                            </h4>
+                                            <h5>11
+                                                <i>km/h</i>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="daily-weather">
+                                            <h2>Sat</h2>
+                                            <h3>82
+                                                <span><i class="wi-fahrenheit"></i>
+                                                </span>
+                                            </h3>
+                                            <h4><i class="wi-cloudy"></i>
+                                            </h4>
+                                            <h5>10
+                                                <i>km/h</i>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /END OF CONTENT -->
+
+                <!-- FOOTER -->
+                <div class="footer-space"></div>
+                <div id="footer">
+                    <div class="devider-footer-left"></div>
+                    <div class="time">
+                        <p id="spanDate">
+                        <p id="clock">
+                    </div>
+                    <div class="copyright">Make with Love
+                        <span class="entypo-heart"></span>Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> All Rights Reserved</div>
+                    <div class="devider-footer"></div>
+                </div>
+                <!-- / END OF FOOTER -->
+            </div>
+        </div>
+    </div>
+    <!--  END OF PAPER WRAP -->
+
+    <!-- 右侧导航栏 start -->
+	{include '../public/right_menu.html'}
+	<!-- 右侧导航栏 end --> 
+	
+	<!-- 修改密码 start -->
+	<div id="modal-pwd" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"><i class="fa fa-lock"></i> 修改密码</span></h4>
+				</div>
+				<!--content start-->
+				<form role="form">
+					<div class="body-nest" id="basic">
+						<div class="form_center">
+							<div class="form-group">
+								<label for="exampleInputEmail1">原来密码</label>
+								<input type="password" placeholder="请输入原来密码" id="exampleInputEmail1" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">新密码</label>
+								<input type="password" placeholder="请输入新密码" id="exampleInputPassword1" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">确认密码</label>
+								<input type="password" placeholder="两次密码一致" id="exampleInputPassword1" class="form-control">
+							</div>
+						</div>
+					</div>
+					<!--content nd-->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button id='sub' type="submit" class="btn btn-primary">修改</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 修改密码 end --> 
+
+	{include '../public/footer.html'}
+
+    <script>
+/*    var gauge4 = new Gauge("canvas4", {
+        'mode': 'needle',
+        'range': {
+            'min': 0,
+            'max': 90
+        }
+    });
+    gauge4.draw(Math.floor(Math.random() * 90));
+    var run = setInterval(function() {
+        gauge4.draw(Math.floor(Math.random() * 90));
+    }, 3500); 
+*/  
+    </script>
+
+
+    <script type="text/javascript">
+    /* Javascript
+     *
+     * See http://jhere.net/docs.html for full documentation
+     */ 
+    $(window).on('load', function() {
+        $('#mapContainer').jHERE({
+            center: [34.44, 113.42],
+            type: 'smart',
+            zoom: 4
+        }).jHERE('marker', [34.44, 113.42], {
+            //icon: '/public/assets/img/marker.png',
+            anchor: {
+                x: 12,
+                y: 32
+            },
+            click: function() {
+                alert('Hallo China!');
+            }
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    var output, started, duration, desired;
+
+    // Constants
+    duration = 5000;
+    desired = '50';
+
+    // Initial setup
+    output = $('#speed');
+    started = new Date().getTime();
+
+    // Animate!
+    animationTimer = setInterval(function() {
+        // If the value is what we want, stop animating
+        // or if the duration has been exceeded, stop animating
+        if (output.text().trim() === desired || new Date().getTime() - started > duration) {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('' + Math.floor(Math.random() * 60)
+
+            );
+
+        } else {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('' + Math.floor(Math.random() * 120)
+
+            );
+        }
+    }, 5000);
+    </script>
+    <script type="text/javascript">
+    $('#getting-started').countdown('2015/01/01', function(event) {
+        $(this).html(event.strftime(
+
+            '<span>%M</span>' + '<span class="start-min">:</span>' + '<span class="start-min">%S</span>'));
+    });
+    </script>
+
+	
+
+	
+	
+</body>
+
+</html>

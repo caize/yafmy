@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>NHXuan Admin | Dashboard</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script src="js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/public/admin/css/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/themes/default.css" id="skin-switcher" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/responsive.css" >
+	
+	<link href="/public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- TABLE CLOTH -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/tablecloth/css/tablecloth.min.css" />
+	<!-- FONTS -->
+	<link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!-- HEADER --> 
+<{include '../public/top.html'}> 
+<!--/HEADER --> 
+<!-- PAGE -->
+<section id="page"> 
+	<!-- SIDEBAR --> 
+	<{include '../public/left_menu.html'}> 
+	<!-- /SIDEBAR -->
+	<div id="main-content"> 
+		<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Box Settings</h4>
+					</div>
+					<div class="modal-body"> Here goes box setting content. </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="container">
+			<div class="row">
+				<div id="content" class="col-lg-12"> 
+					<!-- PAGE HEADER-->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-header"> 
+								<!-- STYLER --> 
+								
+								<!-- /STYLER --> 
+								<!-- BREADCRUMBS -->
+								<ul class="breadcrumb">
+									<li> <i class="fa fa-home"></i> <a href="/admin/index/index/index.html">首页</a> </li>
+									<li>基本信息</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /PAGE HEADER --> 
+					
+					<!-- /BORDERED HOVER -->
+					<div class="row">
+						<div class="col-md-6"> 
+							<!-- BOX -->
+							<div class="box border primary">
+								<div class="box-title">
+									<h4><i class="fa fa-table"></i>基本信息列表</h4>
+									<div class="tools"> <a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> <a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> <a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> <a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> </div>
+								</div>
+								<div class="box-body">
+									<table class="table table-bordered">
+										<tbody>
+											<tr><td>登录名称：<{$smarty.session.USER_NAME}></td></tr>
+											<tr><td>用户组：【<{$smarty.session.USER_ROLE_NAME}>】</td></tr>
+											<tr><td>本次登录IP：<{$logininfo['logip']}></td></tr>
+											<tr><td>登录时间：<{$logininfo['time']}></td></tr>
+											<tr><td>登录次数：<{$smarty.session.USER_LOGIN_NUM}></td></tr></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /BOX --> 
+						</div>
+						<div class="col-md-6"> 
+							<!-- BOX -->
+							<div class="box border primary">
+								<div class="box-title">
+									<h4><i class="fa fa-table"></i>官方信息列表</h4>
+									<div class="tools"> <a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> <a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> <a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> <a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> </div>
+								</div>
+								<div class="box-body">
+									<table class="table table-bordered">
+										<tbody>
+											<tr><td>开发团队：<{$data['dev'][0]['team']}></td></tr>
+											<tr><td>策划/架构：<{$data['dev'][0]['framework']}></td></tr>
+											<tr><td>程序开发：<{$data['dev'][0]['code']}></td></tr>
+											<tr><td>UI 设计：<{$data['dev'][0]['ui']}></td></tr>
+											<tr><td>官方网站：<a href="<{$data['dev'][0]['website']}>"><{$data['dev'][0]['website']}></a></td></tr></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /BOX --> 
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6"> 
+							<!-- BOX -->
+							<div class="box border primary">
+								<div class="box-title">
+									<h4><i class="fa fa-table"></i>待处理事务列表</h4>
+									<div class="tools"> <a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> <a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> <a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> <a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> </div>
+								</div>
+								<div class="box-body">
+									<table class="table table-bordered">
+										<tbody>
+											<tr><td>会员审核：10</td></tr>
+											<tr><td>文章审核：888</td></tr>
+											<tr><td>服务器报错：2</td></tr>
+											<tr><td>服务器运行时间：72H</td></tr>
+											<tr><td>&nbsp;</td></tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /BOX --> 
+						</div>
+						<div class="col-md-6"> 
+							<!-- BOX -->
+							<div class="box border primary">
+								<div class="box-title">
+									<h4><i class="fa fa-table"></i>环境信息列表</h4>
+									<div class="tools"> <a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> <a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> <a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> <a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> </div>
+								</div>
+								<div class="box-body">
+									<table class="table table-bordered">
+										<tbody>
+											<tr><td>操作系统：<{$info['system']}></td></tr>
+											<tr><td>版本：<{$info['edition']}></td></tr>
+											<tr><td>服务器软件：<{$info['software']}></td></tr>
+											<tr><td>服务器端IP：<{$info['serviceip']}></td></tr>
+											<tr><td>主机名IP端口: <{$info['port']}></td></tr></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /BOX --> 
+						</div>
+					</div>
+					<!-- /BORDERED HOVER --> 
+				</div>
+				<div class="footer-tools"> <span class="go-top"> <i class="fa fa-chevron-up"></i> Top </span> </div>
+			</div>
+			<!-- /CONTENT-->
+			<div class="separator"></div>
+		</div>
+	</div>
+</section>
+<!--/PAGE --> 
+<!-- JAVASCRIPTS --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<!-- JQUERY --> 
+<script src="/public/admin/js/jquery/jquery-2.0.3.min.js"></script> 
+<!-- JQUERY UI--> 
+<script src="/public/admin/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script> 
+<!-- BOOTSTRAP --> 
+<script src="/public/admin/bootstrap-dist/js/bootstrap.min.js"></script> 
+
+<!-- DATE RANGE PICKER --> 
+<script src="/public/admin/js/bootstrap-daterangepicker/moment.min.js"></script> 
+<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.min.js"></script> 
+<!-- SLIMSCROLL --> 
+<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script> 
+<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script> 
+<!-- BLOCK UI --> 
+<script type="text/javascript" src="/public/admin/js/jQuery-BlockUI/jquery.blockUI.min.js"></script> 
+<!-- TABLE CLOTH --> 
+<script type="text/javascript" src="/public/admin/js/tablecloth/js/jquery.tablecloth.js"></script> 
+<script type="text/javascript" src="/public/admin/js/tablecloth/js/jquery.tablesorter.min.js"></script> 
+<!-- COOKIE --> 
+<script type="text/javascript" src="/public/admin/js/jQuery-Cookie/jquery.cookie.min.js"></script> 
+<!-- CUSTOM SCRIPT --> 
+<script src="/public/admin/js/script.js"></script> 
+<script>
+	jQuery(document).ready(function() {		
+		App.setPage("simple_table");  //Set current page
+		App.init(); //Initialise plugins and elements
+	});
+</script> 
+<!-- /JAVASCRIPTS -->
+</body>
+</html>

@@ -1,0 +1,271 @@
+<{include '../public/header.html'}>
+<body>
+	<!-- HEADER -->
+	<{include '../public/top.html'}>
+	<!--/HEADER -->
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<{include '../public/left_menu.html'}>
+		<!-- /SIDEBAR -->
+		<div id="main-content">
+			<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					  <h4 class="modal-title">Box Settings</h4>
+					</div>
+					<div class="modal-body">
+					  Here goes box setting content.
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					  <button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="container">
+				<div class="row">
+					<div id="content" class="col-lg-12">
+						<!-- PAGE HEADER-->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-header">
+									<!-- STYLER -->
+									<!-- /STYLER -->
+									<!-- BREADCRUMBS -->
+									<ul class="breadcrumb">
+										<li> <i class="fa fa-home"></i> <a href="/admin/index/index/index.html">首页</a> </li>
+										<li> <a href="/admin/users/index/index.html">会员管理</a> </li>
+										<li>会员管理列表</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /PAGE HEADER -->
+						
+						<!-- EXPORT TABLES -->
+						<div class="row">
+							<div class="col-md-12">
+								<!-- BOX -->
+								<div class="box border primary">
+									<div class="box-title">
+										<h4><i class="fa fa-table"></i>会员管理列表（提供Copy, Print, CSV, Excel, PDF功能）</h4>
+										<div class="tools hidden-xs">
+											<a href="#box-config" data-toggle="modal" class="config">
+												<i class="fa fa-cog"></i>
+											</a>
+											<a href="javascript:;" class="reload">
+												<i class="fa fa-refresh"></i>
+											</a>
+											<a href="javascript:;" class="collapse">
+												<i class="fa fa-chevron-up"></i>
+											</a>
+											<a href="javascript:;" class="remove">
+												<i class="fa fa-times"></i>
+											</a>
+										</div>
+									</div>
+									<div class="box-body">
+										<table id="datatableusers" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>username</th>
+													<th width="10%">用户组</th>
+													<th width="8%">登录次数</th>
+													<th width="12%" class="hidden-xs center">注册的IP地址</th>
+													<th width="8%" class="center">状态</th>
+													<th width="15%" class="hidden-xs center">添加时间</th>
+													<th width="12%" class="hidden-xs center">操作</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td colspan="7" class="">Loading data from server</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>username</th>
+													<th width="10%">用户组</th>
+													<th width="8%">登录次数</th>
+													<th width="12%" class="hidden-xs center">注册的IP地址</th>
+													<th width="8%" class="center">状态</th>
+													<th width="15%" class="hidden-xs center">添加时间</th>
+													<th width="12%" class="hidden-xs center">操作</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+								<!-- /BOX -->
+							</div>
+						</div>
+						<!-- /EXPORT TABLES -->
+						<div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+						</div>
+					</div><!-- /CONTENT-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- JQUERY -->
+	<script src="/public/admin/js/jquery/jquery-2.0.3.min.js"></script>
+	<!-- JQUERY UI-->
+	<script src="/public/admin/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script src="/public/admin/bootstrap-dist/js/bootstrap.min.js"></script>
+	
+		
+	<!-- DATE RANGE PICKER -->
+	<script src="/public/admin/js/bootstrap-daterangepicker/moment.min.js"></script>
+	
+	<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+	<!-- SLIMSCROLL -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+	<!-- BLOCK UI -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+	<!-- DATA TABLES -->
+	<script type="text/javascript" src="/public/admin/js/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="/public/admin/js/datatables/media/assets/js/datatables.min.js"></script>
+	<script type="text/javascript" src="/public/admin/js/datatables/extras/TableTools/media/js/TableTools.min.js"></script>
+	<script type="text/javascript" src="/public/admin/js/datatables/extras/TableTools/media/js/ZeroClipboard.min.js"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-Cookie/jquery.cookie.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="/public/admin/js/script.js"></script>
+	<script>
+		jQuery(document).ready(function() {	
+			//datatable ajax page  start
+			$('#datatableusers').dataTable( {
+				sDom: "<'row'<'dataTables_header clearfix'<'col-md-4'l><'col-md-8'Tf>r>>t<'row'<'dataTables_footer clearfix'<'col-md-6'i><'col-md-6'p>>>",
+                oTableTools: {
+                    aButtons: ["copy", "print", "csv", "xls", "pdf"],
+                    sSwfPath: "/public/admin/js/datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"
+                },
+				"bAutoWidth": 		true,//宽度是否自动，感觉不好使的时候关掉试试
+				"bProcessing": 		false,//开关，以指定当正在处理数据的时候，是否显示“正在处理数据”这个提示信息 
+				"bServerSide": 		true,//开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值
+				"sPaginationType": 	"bs_full",//用于指定分页器风格
+				"sAjaxSource": 		"/admin/users/dataTableUsers",//给服务器发请求的url
+				"iDisplayLength":	8,//每页显示多少信息
+				"bPaginate": 		true, //开始翻页功能
+				"bInfo": 			true,//页脚信息,就是Showing 1 to 10 of 57 entries
+				"bStateSave": 	true, //保存当前页的状态  当修改或删除时保存到当前页
+				"aoColumnDefs": 	[{"bSortable": false, "aTargets":[ 0,1,2,3 ]}],//指定某些字段不能排序
+				"order": 			[[ 4, 'asc' ]],//对应的字段排序
+				"aLengthMenu": 		[[8, 10, 20, 50], [8, 10, 20, 50]],//显示搜索的条目数					
+				//"sDom":				'<"top"l>rt<"wrapper"><"wrapper"p><"clear">', //隐藏搜索框
+				//"sDom":					'rt<"wrapper"><"wrapper"p>', //隐藏显示多少条信息	
+				"oLanguage": {
+					"sLengthMenu": 		"每页显示 _MENU_ 条记录",
+					"sZeroRecords": 	"抱歉， 没有找到",//提示信息
+					"sInfo": 			"从 _START_ - _END_ [共 _TOTAL_ 条数据]",
+					"sInfoEmpty": 		"没有数据",
+					"sInfoFiltered": 	"(从 _MAX_ 条数据中检索)",
+					"oPaginate": {  
+						"sFirst": 		"首页",  
+						"sPrevious": 	"上一页",
+						"sNext": 		"下一页",  
+						"sLast": 		"尾页" 
+					}, 
+					//"sProcessing": "<img src='./logo.png' />"
+				},
+
+				//post传递过去的参数
+				"fnServerParams": function ( aoData ) {
+					aoData.push( 
+						{ "name": "sub", "value":'yes' },
+						{ "name": "type", "value":'2' }
+					); 
+				},				
+				//使用post方式
+				"fnServerData": function ( sSource, aoData, fnCallback ) {
+					$.ajax( {
+						"dataType"	: 'json',
+						"type"		: "POST",
+						"url"		: sSource,
+						"data"		: aoData,
+						"async"		:true,
+						"beforeSend":function(){
+							//数据发送后，等待数据时
+							//$('#example_processing').css('border','0');	
+							//$('#example_processing').css('filtter','alpha (opacity=0)');//设置透明度	
+							//$('#example_processing').css('opacity','0');//设置透明度	
+						},
+						"success":fnCallback,
+						"complete":function(data){
+							//数据返回时
+						/*
+							//console.log(data);//打印所有结果
+							$('#loader-wrapper').css('display','none');
+							
+							var str = data['responseJSON']['msg'];
+							//alert(str);
+							if(str !=  'no'){
+								var row = "<td colspan='7'>"+str+'</td>';
+								//alert(row);
+								$('#mytbody .odd').empty().append(row);
+							}
+						*/	
+						},
+					} );
+				},
+/*				"aoColumns": [
+					{ "sName": "role" },
+					{ "sName": "title" },
+					{ "sName": "sort" },
+					{ "sName": "status" },
+					{ "sName": "addtime" },
+					{ "sName": "id" }
+				]//$_GET['sColumns']将接收到aoColumns传递数据		
+*/				
+			} );
+			//datatable ajax page  end
+			
+			App.setPage("dynamic_table");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<script>
+		$(function(){
+			$(document).on('click','.resetpwd',function(){
+				var username = $(this).attr('username');
+				var str = '';
+				$.ajax({
+					url: "/admin/users/resetpwd",	//请求地址
+					type:"post",		//发送方式
+					async:false,		//同步
+					processData: false,
+					data: "username="+username, //发送数据
+					dataType:"html",//响应数据格式
+					success: function(data){
+						str = data;
+					}
+				});
+				
+				if(str == 'yes'){
+					alert('重置密码成功，请查看邮箱');
+				}else if(str == 'no'){
+					alert('重置密码失败，请再次重置密码');
+				}
+						
+			});
+			
+		
+		
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

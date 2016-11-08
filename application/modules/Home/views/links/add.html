@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>NHXuan Admin | Forms</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script src="js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/public/admin/css/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/themes/default.css" id="skin-switcher" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/responsive.css" >
+	
+	<link href="/public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- TYPEAHEAD -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/typeahead/typeahead.css" />
+	<!-- FILE UPLOAD -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+	<!-- SELECT2 -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/select2/select2.min.css" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/uniform/css/uniform.default.min.css" />
+	<!-- JQUERY UPLOAD -->
+	<!-- blueimp Gallery styles -->
+	<link rel="stylesheet" href="/public/admin/js/blueimp/gallery/blueimp-gallery.min.css">
+	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+	<link rel="stylesheet" href="/public/admin/js/jquery-upload/css/jquery.fileupload.css">
+	<link rel="stylesheet" href="/public/admin/js/jquery-upload/css/jquery.fileupload-ui.css">
+	<!-- FONTS -->
+	<link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<!-- HEADER -->
+	<{include '../public/top.html'}>
+	<!--/HEADER -->
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<{include '../public/left_menu.html'}>
+	<!-- /SIDEBAR -->
+	<div id="main-content"> 
+		<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Box Settings</h4>
+					</div>
+					<div class="modal-body"> Here goes box setting content. </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="container">
+			<div class="row">
+				<div id="content" class="col-lg-12"> 
+					<!-- PAGE HEADER-->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-header"> 
+								<!-- STYLER --> 
+								
+								<!-- /STYLER --> 
+								<!-- BREADCRUMBS -->
+								<ul class="breadcrumb">
+									<li> <i class="fa fa-home"></i> <a href="/admin/index/index/index.html">首页</a> </li>
+									<li> <a href="/admin/links/index/index.html">友情链接</a> </li>
+									<li>添加友情链接</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /PAGE HEADER --> 
+					<!-- FORMS -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="box border primary">
+										<div class="box-title">
+											<h4><i class="fa fa-bars"></i>添加友情链接</h4>
+											<div class="tools hidden-xs"> <a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> <a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> <a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> <a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> </div>
+										</div>
+										<div class="box-body big">
+											<form action="/admin/links/insertinfo" method="post" class="form-horizontal" role="form">
+												<input type="hidden" name="sub" value="link" />
+												<!--链接名称-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">链接名称:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="linkname" value="" placeholder="请输入链接名称">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--链接分类-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">链接分类:</label>
+													<div class="col-sm-5">
+														<label class="radio-inline"><input type="radio" class="uniform" name="type" value="1">友情链接 </label>
+														<label class="radio-inline"><input type="radio" class="uniform" name="type" value="2">合作伙伴 </label>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--网址-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">网址:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="url" value="" placeholder="请输入网址">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--关键字-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">关键字</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="keyword" value="" placeholder="请输入关键字">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--链接介绍-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">链接介绍:</label>
+													<div class="col-sm-5">
+														<textarea class="form-control" name="desc" rows="3"></textarea>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--图片显示-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">图片显示:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="sort" readonly id="showpath" value="" placeholder="上传后的图片地址">
+													</div>
+													<div class="row fileupload-buttonbar">
+														<div class="col-sm-3">
+															<!-- The fileinput-button span is used to style the file input field as button -->
+															<span class="btn btn-success fileinput-button">
+																<i class="fa fa-plus"></i>
+																<span onclick="getElementById('inputfile').click()">上传图片</span>
+																<input type="file" name="pic" id="inputfile" />
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-3 control-label"></label>
+													<div class="col-sm-5">
+														<p class="form-control" id="feedback" style="width:200px;height:200px;" ><img src="/public/img/default.png" style="width:190px"></p>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--排序值-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">排序值:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="sort" value="" placeholder="排序值越大越靠前，默认为0">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--联系人-->
+												<div class="form-group">
+													<label class="col-sm-3  control-label">联系人:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="contact" value="" placeholder="请输入联系人">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--电话-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">电话:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="phone" value="" placeholder="请输入联系电话">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--QQ-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">QQ:</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="qq" value="" placeholder="请输入QQ账号">
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--是否推荐首页-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">是否推荐首页:</label>
+													<div class="col-sm-5">
+														<label class="radio-inline"><input type="radio" class="uniform" name="is_index" value="y">Yes </label>
+														<label class="radio-inline"><input type="radio" class="uniform" name="is_index" value="n">Yes </label>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--状态-->
+												<div class="form-group">
+													<label class="col-sm-3 control-label">状态:</label>
+													<div class="col-sm-5">
+														<label class="radio-inline"><input type="radio" class="uniform" name="status" value="y">Yes </label>
+														<label class="radio-inline"><input type="radio" class="uniform" name="status" value="n">Yes </label>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--操作-->
+												<div class="form-group">
+													<div class="col-sm-3"></div>
+													<div class="col-sm-4">
+														<button type="reset" class="btn btn-success">Reset</button>
+														<button type="submit" class="btn btn-success">Submit</button>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /SAMPLE --> 
+						</div>
+					</div>
+					<!-- /FORMS -->
+					<!-- /SAMPLE -->
+					<div class="footer-tools"> <span class="go-top"> <i class="fa fa-chevron-up"></i> Top </span> </div>
+				</div>
+				<!-- /CONTENT--> 
+			</div>
+		</div>
+	</div>
+</section>
+<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<script src="/public/admin/js/jquery/jquery-2.0.3.min.js"></script>
+	<!-- JQUERY UI-->
+	<script src="/public/admin/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script src="/public/admin/bootstrap-dist/js/bootstrap.min.js"></script>
+
+	<!-- DATE RANGE PICKER -->
+	<script src="/public/admin/js/bootstrap-daterangepicker/moment.min.js"></script>
+	
+	<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+	<!-- SLIMSCROLL -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+	<!-- BLOCK UI -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+	<!-- TYPEHEAD -->
+	<script type="text/javascript" src="/public/admin/js/typeahead/typeahead.min.js"></script>
+	<!-- AUTOSIZE -->
+	<script type="text/javascript" src="/public/admin/js/autosize/jquery.autosize.min.js"></script>
+	<!-- COUNTABLE -->
+	<script type="text/javascript" src="/public/admin/js/countable/jquery.simplyCountable.min.js"></script>
+	<!-- INPUT MASK -->
+	<script type="text/javascript" src="/public/admin/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+	<!-- FILE UPLOAD -->
+	<script type="text/javascript" src="/public/admin/js/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+	<!-- SELECT2 -->
+	<script type="text/javascript" src="/public/admin/js/select2/select2.min.js"></script>
+	<!-- UNIFORM -->
+	<script type="text/javascript" src="/public/admin/js/uniform/jquery.uniform.min.js"></script>
+	<!-- JQUERY UPLOAD -->
+	<!-- The Templates plugin is included to render the upload/download listings -->
+	<script src="/public/admin/js/blueimp/javascript-template/tmpl.min.js"></script>
+	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+	<script src="/public/admin/js/blueimp/javascript-loadimg/load-image.min.js"></script>
+	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+	<script src="/public/admin/js/blueimp/javascript-canvas-to-blob/canvas-to-blob.min.js"></script>
+	<!-- blueimp Gallery script -->
+	<script src="/public/admin/js/blueimp/gallery/jquery.blueimp-gallery.min.js"></script>
+	<!-- The basic File Upload plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload.min.js"></script>
+	<!-- The File Upload processing plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-process.min.js"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-image.min.js"></script>
+	<!-- The File Upload audio preview plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-audio.min.js"></script>
+	<!-- The File Upload video preview plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-video.min.js"></script>
+	<!-- The File Upload validation plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-validate.min.js"></script>
+	<!-- The File Upload user interface plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-ui.min.js"></script>
+	<!-- The main application script -->
+	<script src="/public/admin/js/jquery-upload/js/main.js"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-Cookie/jquery.cookie.min.js"></script>
+
+	<script src="/public/admin/js/timeago/jquery.timeago.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="/public/admin/js/script.js"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("forms");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+		
+		//ajax文件上传
+		$(document).ready(function(){
+			$("#inputfile").change(function(){
+				//创建FormData对象
+				var data = new FormData();
+
+				//为FormData对象添加数据
+				$.each($('#inputfile')[0].files, function(i, file) {
+					data.append('upload_file', file);
+				});
+		
+				$.ajax({
+					url:'/admin/links/ajaxUplodaPic',
+					type:'POST',
+					data:data,
+					cache: false,
+					contentType: false,    //不可缺
+					processData: false,    //不可缺
+					dataType:'json',
+					success:function(res){
+						if(res['code'] == 200){
+							$("#feedback").empty().append("<img src='"+res['path']+"' width='190'>");
+							$("#showpath").val(res['path']);
+						}
+					}
+				});
+			});
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

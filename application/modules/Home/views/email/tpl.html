@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>NHXuan Admin | Forms</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script src="js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/public/admin/css/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/themes/default.css" id="skin-switcher" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/responsive.css" >
+	
+	<link href="/public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- TYPEAHEAD -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/typeahead/typeahead.css" />
+	<!-- FILE UPLOAD -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+	<!-- SELECT2 -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/select2/select2.min.css" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/uniform/css/uniform.default.min.css" />
+	<!-- JQUERY UPLOAD -->
+	<!-- blueimp Gallery styles -->
+	<link rel="stylesheet" href="/public/admin/js/blueimp/gallery/blueimp-gallery.min.css">
+	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+	<link rel="stylesheet" href="/public/admin/js/jquery-upload/css/jquery.fileupload.css">
+	<link rel="stylesheet" href="/public/admin/js/jquery-upload/css/jquery.fileupload-ui.css">
+	<!-- FONTS -->
+	<link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+	
+	<!--NHXuan  编辑器所用-->
+	<link rel="stylesheet" href="/public/kindeditor/js/themes/default/default.css" />
+	<link rel="stylesheet" href="/public/kindeditor/css/prettify.css" />
+	<script charset="utf-8" src="/public/kindeditor/js/kindeditor.js"></script>
+	<script charset="utf-8" src="/public/kindeditor/js/zh_CN.js"></script>
+	<script charset="utf-8" src="/public/kindeditor/js/prettify.js"></script>
+	<!--NHXuan  编辑器所用-->
+<!-- WIZARD 表单验证-->
+<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-wizard/wizard.css" />
+	
+</head>
+<body>
+	<!-- HEADER -->
+	<{include '../public/top.html'}>
+	<!--/HEADER -->
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<{include '../public/left_menu.html'}>
+	<!-- /SIDEBAR -->
+	<div id="main-content"> 
+		<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Box Settings</h4>
+					</div>
+					<div class="modal-body"> Here goes box setting content. </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="container">
+			<div class="row">
+				<div id="content" class="col-lg-12"> 
+					<!-- PAGE HEADER-->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-header"> 
+								<!-- STYLER --> 
+								
+								<!-- /STYLER --> 
+								<!-- BREADCRUMBS -->
+								<ul class="breadcrumb">
+									<li> <i class="fa fa-home"></i> <a href="index.html">Home</a> </li>
+									<li> <a href="#">Form Elements</a> </li>
+									<li>Forms</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /PAGE HEADER --> 
+					<!-- FORMS -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="box border primary">
+										<div class="box-title">
+											<h4><i class="fa fa-bars"></i>Form controls</h4>
+											<div class="tools hidden-xs"> <a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> <a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> <a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> <a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> </div>
+										</div>
+										<div class="box-body big">
+											<form id="emailform" method="post" action="/admin/email/sendemail" enctype="multipart/form-data" class="form-horizontal myemail" role="form">
+												<!--收件人地址-->
+												<div class="form-group">
+													<label class="col-sm-2 control-label">收件人地址:*</label>
+													<div class="col-sm-5">
+														<input type="text" name="tos_address" value="" class="form-control" placeholder="请填写收件人地址">
+													</div>
+													<div class="col-sm-5"><label class="error" for="tos_address"></label></div>
+												</div>
+												<!--收件人姓名-->
+												<div class="form-group">
+													<label class="col-sm-2 control-label">收件人姓名:*</label>
+													<div class="col-sm-5">
+														<input type="text" name="tos_name" value="" class="form-control" placeholder="请填写收件人姓名">
+													</div>
+													<div class="col-sm-5"><label class="error" for="tos_name"></label></div>
+												</div>
+												<!--邮件标题-->
+												<div class="form-group">
+													<label class="col-sm-2 control-label">邮件标题:*</label>
+													<div class="col-sm-5">
+														<input type="text" name="subject" value="" class="form-control" placeholder="请填写邮件标题">
+													</div>
+													<div class="col-sm-5"><label class="error" for="subject"></label></div>
+												</div>
+												<!--邮件内容-->
+												<div class="form-group">
+													<label class="col-sm-2 control-label">邮件内容:*</label>
+													<div class="col-sm-9">
+														<textarea name="content" style="width:95%;height:300px;visibility:hidden;"></textarea>
+													</div>
+													<div class="col-sm-1"></div>
+												</div>
+												<!--附件地址或上传附件-->
+												<div class="form-group">
+													<label class="col-sm-2 control-label">邮件附件:</label>
+													<div class="col-sm-3">
+														<select class="form-control attachstype" name="attachstype">
+															<option>--请选择提供附件方式--</option>
+															<option value="attachs_address">附件地址</option>
+															<option value="attachs_upload">上传附件</option>
+														</select>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+												<!--附件内容-->
+												<div class="form-group" id='attachs_info'>
+													
+												</div>
+												<!--保存 重置操作-->
+												<div class="form-group">
+													<div class="col-sm-2"></div>
+													<div class="col-sm-4">
+														<button type="reset" class="btn btn-success">Reset</button>
+														<button type="submit" class="btn btn-success">Submit</button>
+													</div>
+													<div class="col-sm-5"></div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /SAMPLE --> 
+						</div>
+					</div>
+					<!-- /FORMS -->
+					<!-- /SAMPLE -->
+					<div class="footer-tools"> <span class="go-top"> <i class="fa fa-chevron-up"></i> Top </span> </div>
+				</div>
+				<!-- /CONTENT--> 
+			</div>
+		</div>
+	</div>
+</section>
+<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<script src="/public/admin/js/jquery/jquery-2.0.3.min.js"></script>
+	<!-- JQUERY UI-->
+	<script src="/public/admin/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script src="/public/admin/bootstrap-dist/js/bootstrap.min.js"></script>
+
+	<!-- DATE RANGE PICKER -->
+	<script src="/public/admin/js/bootstrap-daterangepicker/moment.min.js"></script>
+	
+	<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+	<!-- SLIMSCROLL -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+	<!-- BLOCK UI -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+	<!-- TYPEHEAD -->
+	<script type="text/javascript" src="/public/admin/js/typeahead/typeahead.min.js"></script>
+	<!-- AUTOSIZE -->
+	<script type="text/javascript" src="/public/admin/js/autosize/jquery.autosize.min.js"></script>
+	<!-- COUNTABLE -->
+	<script type="text/javascript" src="/public/admin/js/countable/jquery.simplyCountable.min.js"></script>
+	<!-- INPUT MASK -->
+	<script type="text/javascript" src="/public/admin/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+	<!-- FILE UPLOAD -->
+	<script type="text/javascript" src="/public/admin/js/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+	<!-- SELECT2 -->
+	<script type="text/javascript" src="/public/admin/js/select2/select2.min.js"></script>
+	<!-- UNIFORM -->
+	<script type="text/javascript" src="/public/admin/js/uniform/jquery.uniform.min.js"></script>
+	<!-- JQUERY UPLOAD -->
+	<!-- The Templates plugin is included to render the upload/download listings -->
+	<script src="/public/admin/js/blueimp/javascript-template/tmpl.min.js"></script>
+	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+	<script src="/public/admin/js/blueimp/javascript-loadimg/load-image.min.js"></script>
+	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+	<script src="/public/admin/js/blueimp/javascript-canvas-to-blob/canvas-to-blob.min.js"></script>
+	<!-- blueimp Gallery script -->
+	<script src="/public/admin/js/blueimp/gallery/jquery.blueimp-gallery.min.js"></script>
+	<!-- The basic File Upload plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload.min.js"></script>
+	<!-- The File Upload processing plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-process.min.js"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-image.min.js"></script>
+	<!-- The File Upload audio preview plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-audio.min.js"></script>
+	<!-- The File Upload video preview plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-video.min.js"></script>
+	<!-- The File Upload validation plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-validate.min.js"></script>
+	<!-- The File Upload user interface plugin -->
+	<script src="/public/admin/js/jquery-upload/js/jquery.fileupload-ui.min.js"></script>
+	<!-- The main application script -->
+	<script src="/public/admin/js/jquery-upload/js/main.js"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="/public/admin/js/jQuery-Cookie/jquery.cookie.min.js"></script>
+
+	<script src="/public/admin/js/timeago/jquery.timeago.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="/public/admin/js/script.js"></script>
+<!-- WIZARD 表单验证--> 
+<script src="/public/admin/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script> 
+<!-- WIZARD --> 
+<script src="/public/admin/js/jquery-validate/jquery.validate.min.js"></script> 
+<script src="/public/admin/js/jquery-validate/additional-methods.min.js"></script> 
+<script src="/public/admin/js/bootstrap-wizard/form-email.js"></script>
+<script src="/public/admin/js/bootstrap-wizard/language_msg.js"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("forms");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+	<!--NHXuan 自定义JS-->
+	<script>
+		//1.word编辑器调用的JS
+		KindEditor.ready(function(K) {
+			var editor1 = K.create('textarea[name="content"]', {
+				cssPath : '/public/kindeditor/css/prettify.css',
+				uploadJson : '/public/kindeditor/php/upload_json.php',
+				fileManagerJson : '/public/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+				}
+			});
+			prettyPrint();
+		});
+		
+		//2.判断邮件附件的类型（附件地址|上传附件）
+		$(function(){
+			$(document).on('change','.myemail .attachstype',function(){
+				//1.获取被选中的值
+				var values = $('.myemail option:selected').val();
+				if($.trim(values) == 'attachs_address'){
+					//附件地址
+					var htmladdress = '<label class="col-sm-2 control-label">附件地址:</label><div class="col-sm-3"><input type="text" name="attachs_address" value="" class="form-control" placeholder="请填写附件地址"></div><div class="col-sm-5"></div>';
+					$('.myemail #attachs_info').empty().append(htmladdress);
+				}else if($.trim(values) == 'attachs_upload'){
+					//附件上传
+					var htmlupload = '<label class="col-md-2 control-label">上传附件:</label>'; 
+						htmlupload += '<div class="col-md-4">';
+						htmlupload += '<div class="fileupload fileupload-new" data-provides="fileupload">';
+							htmlupload += '<div class="input-group">';
+								htmlupload += '<div class="form-control uneditable-input"><i class="fa fa-file fileupload-exists"></i>';
+									htmlupload += '<span class="fileupload-preview"></span>';
+								htmlupload += '</div>';
+								htmlupload += '<div class="input-group-btn">';
+									htmlupload += '<a class="btn btn-default btn-file">';
+										htmlupload += '<span class="fileupload-new">Select file</span>';
+										htmlupload += '<span class="fileupload-exists">Change</span>';
+										htmlupload += '<input type="file" name="attachs_upload" class="file-input"/>';
+									htmlupload += '</a>';
+									htmlupload += '<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>';
+								htmlupload += '</div>';
+							htmlupload += '</div>';
+						htmlupload += '</div>';
+					htmlupload += '</div>';
+					htmlupload += '<div class="col-sm-5"></div>';
+					$('.myemail #attachs_info').empty().append(htmlupload);
+				}else{
+					//请选择提供附件方式
+					$('.myemail #attachs_info').empty();
+				}
+			
+			});
+			
+		});
+	</script>
+	<!--NHXuan 自定义JS-->
+</body>
+</html>

@@ -1,0 +1,134 @@
+<div id="sidebar" class="sidebar responsive sidebar-fixed">
+
+	<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+		<!--左侧顶端按钮-->
+		<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+			<a class="btn btn-success" href="<?php echo U('news/news_list')?>" role="button" title="文章列表"><i class="ace-icon fa fa-signal"></i></a>
+			<a class="btn btn-info" href="<?php echo U('news/news_add')?>" role="button" title="添加文章"><i class="ace-icon fa fa-pencil"></i></a>
+			<a class="btn btn-warning" href="<?php echo U('member/member_list')?>" role="button" title="会员列表"><i class="ace-icon fa fa-users"></i></a>
+			<a class="btn btn-danger" href="<?php echo U('Sys/sys')?>" role="button" title="站点设置"><i class="ace-icon fa fa-cogs"></i></a>
+		</div>
+        <!--左侧顶端按钮（手机）-->
+		<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+			<a class="btn btn-success" href="<?php echo U('news/news_list')?>" role="button" title="文章列表"></a>
+			<a class="btn btn-info" href="<?php echo U('news/news_add')?>" role="button" title="添加文章"></a>
+			<a class="btn btn-warning" href="<?php echo U('nember/member_list')?>" role="button" title="会员列表"></a>
+			<a class="btn btn-danger" href="<?php echo U('sys/sys')?>" role="button" title="站点设置"></a>
+		</div>
+	</div>
+    <!--菜单栏开始-->
+	<ul class="nav nav-list">
+		<?php
+		$m = new AuthModel();
+		$data = $m->showUsers(array('pid'=>'0','status'=>'1'));
+		$auth = new Auth();
+		//没有权限的菜单不显示
+		$aid = C('SESSION_USER_KEY');
+		foreach ($data as $k=>$v){
+			if(!$auth->check($v['name'], session($aid)) && session($aid) != 1){
+				unset($data[$k]);
+			}
+		}
+		?>
+        <!--一级菜单遍历-->
+		<?php
+		foreach($data as $key => $value){
+		?>
+		<li ><!--class="open"-->
+			<a href="javascript:void(0);" class="dropdown-toggle">
+				<i class="menu-icon fa <?php echo $value['css']?>"></i>
+				<span class="menu-text"><?php echo $value['title']?></span>
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">
+				<?php
+				$m = new AuthModel();
+				$dataa = $m->showUsers(array('pid'=>$value['id'],'status'=>1));
+				foreach ($dataa as $kk=>$vv){
+					if(!$auth->check($vv['name'],session($aid)) && session($aid) != 1){
+					unset($dataa[$kk]);
+					}
+				}
+				//判断是否level=4
+				$id_4 = $m->GetUsrInfo(array('level'=>4));
+				if($id_4){
+					//第4级,找上1级
+					$id_3 = $m->GetUsrInfo(array('id'=>$id_4['pid'],'level'=>3));
+				}else{
+					//找第3级,从而得出
+					$id_3=$m->GetUsrInfo(array('level'=>3));
+					if(!$id_3){
+						//未找到3级,找2级
+						$id_2=$m->GetUsrInfo(array('level'=>2));
+						$id_3['pid']=$id_2['id'];
+					}
+				}
+				?>
+				<!--二级菜单遍历-->
+				<?php
+				$m = new AuthModel();
+				foreach($dataa as $i=>$j){
+					$dataaa = $m->showUsers(array('pid'=>$j['id'],'status'=>1));
+					foreach ($dataaa as $kkk=>$vvv){
+						if(!$auth->check($vvv['name'], session($aid)) && session($aid) != 1){
+							unset($dataaa[$kkk]);
+						}
+					}
+				?>
+				<?php if(empty($dataaa)){?>
+				<!-- 无三级菜单 -->
+				<li class="<?php if($id_3['pid']==$j['id']){ echo 'active open';}?>">
+					<a href="<?php echo U($j['name'])?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<?php echo $j['title']?>
+					</a>
+					<b class="arrow"></b>
+				</li>
+				<?php }else{?>
+				<li class="<?php if($id_3['pid']==$j['id']){ echo 'active open';}?>">
+					<a href="javascript:void(0);" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+						<?php echo $j['title']?>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+						<!--三级菜单遍历-->
+						<?php
+						foreach($dataaa as $km=>$mm){
+						?>
+						<li class="active">
+							<a href="<?php echo U($mm['name'])?>">
+								<i class="menu-icon fa fa-caret-right"></i>
+								<?php echo $mm['title']?>
+							</a>
+							<b class="arrow"></b>
+						</li>
+						<?php
+						}
+						?>
+						<!--三级菜单遍历结束-->
+					</ul>
+				</li>
+				<?php
+				}
+				?>
+			<?php
+			}
+			?><!--二级菜单遍历结束-->
+			</ul>
+		</li>
+	<?php
+	}
+	?>
+        <!--一级菜单遍历结束-->
+	</ul><!-- 菜单栏结束 -->
+
+	<!-- 左侧菜单伸缩 -->
+	<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+		<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+	</div>
+
+
+</div>

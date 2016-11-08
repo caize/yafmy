@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>NHXuan Admin | add article</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script src="js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/public/admin/css/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/themes/default.css" id="skin-switcher" >
+	<link rel="stylesheet" type="text/css"  href="/public/admin/css/responsive.css" >
+	<link href="/public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- SELECT2 -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/select2/select2.min.css" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/uniform/css/uniform.default.min.css" />
+	<!-- WIZARD -->
+	<link rel="stylesheet" type="text/css" href="/public/admin/js/bootstrap-wizard/wizard.css" />
+	<!-- FONTS -->
+	<link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+	
+	<!--NHXuan  编辑器所用-->
+	<link rel="stylesheet" href="/public/kindeditor/js/themes/default/default.css" />
+	<link rel="stylesheet" href="/public/kindeditor/css/prettify.css" />
+	<script charset="utf-8" src="/public/kindeditor/js/kindeditor.js"></script>
+	<script charset="utf-8" src="/public/kindeditor/js/zh_CN.js"></script>
+	<script charset="utf-8" src="/public/kindeditor/js/prettify.js"></script>
+	<!--NHXuan  编辑器所用-->
+</head>
+<body>
+<!-- HEADER --> 
+<{include '../public/top.html'}> 
+<!--/HEADER --> 
+
+<!-- PAGE -->
+<section id="page"> 
+	<!-- SIDEBAR --> 
+	<{include '../public/left_menu.html'}> 
+	<!-- /SIDEBAR -->
+	<div id="main-content"> 
+		<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Box Settings</h4>
+					</div>
+					<div class="modal-body"> Here goes box setting content. </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+		<div class="container">
+			<div class="row">
+				<div id="content" class="col-lg-12"> 
+					<!-- PAGE HEADER-->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="page-header"> 
+								<!-- STYLER --> 
+								
+								<!-- /STYLER --> 
+								<!-- BREADCRUMBS -->
+								<ul class="breadcrumb">
+									<li> <i class="fa fa-home"></i> <a href="/admin/index/index/index.html">首页</a> </li>
+									<li> <a href="/admin/category/index/index.html">文章管理</a> </li>
+									<li>添加文章</li>
+								</ul>
+								<!-- /BREADCRUMBS --> 
+								
+							</div>
+						</div>
+					</div>
+					<!-- /PAGE HEADER --> 
+					<!-- SAMPLE -->
+					<div class="row">
+						<div class="col-md-12"> 
+							<!-- BOX -->
+							<div class="box border primary" id="formWizard">
+								<div class="box-title">
+									<h4><i class="fa fa-bars"></i>添加文章-*号为必填选项 - <span class="stepHeader">Step 1 of 3</h4>
+									<div class="tools hidden-xs"> 
+										<a href="#box-config" data-toggle="modal" class="config"> <i class="fa fa-cog"></i> </a> 
+										<a href="javascript:;" class="reload"> <i class="fa fa-refresh"></i> </a> 
+										<a href="javascript:;" class="collapse"> <i class="fa fa-chevron-up"></i> </a> 
+										<a href="javascript:;" class="remove"> <i class="fa fa-times"></i> </a> 
+									</div>
+								</div>
+								<div class="box-body form">
+									<form id="wizForm" action="/admin/article/insertinfo" method="post"  enctype="multipart/form-data" class="form-horizontal" >
+										<input type="hidden" name="sub" value="article" />
+										<div class="wizard-form">
+											<div class="wizard-content">
+												<!--顶部显示的步骤-->
+												<ul class="nav nav-pills nav-justified steps">
+													<li> <a href="#account" data-toggle="tab" class="wiz-step"> <span class="step-number">1</span> <span class="step-name"><i class="fa fa-check"></i> 文章基本信息部分 </span> </a> </li>
+													<li> <a href="#payment" data-toggle="tab" class="wiz-step active"> <span class="step-number">2</span> <span class="step-name"><i class="fa fa-check"></i> 文字主体内容部分</span> </a> </li>
+													<!--li> <a href="#confirm" data-toggle="tab" class="wiz-step"> <span class="step-number">3</span> <span class="step-name"><i class="fa fa-check"></i> 真正提交文字内容 </span> </a> </li-->
+												</ul>
+												<!--进度条-->
+												<div id="bar" class="progress progress-striped progress-sm active" role="progressbar">
+													<div class="progress-bar progress-bar-warning"></div>
+												</div>
+												<div class="tab-content">
+													<!--弹出错误提示消息-->
+													<div class="alert alert-danger display-none"> <a class="close" aria-hidden="true" href="#" data-dismiss="alert">×</a> Your form has errors. Please correct them to proceed. </div>
+													<!--弹出正确提示消息-->
+													<div class="alert alert-success display-none"> <a class="close" aria-hidden="true" href="#" data-dismiss="alert">×</a> Your form validation is successful! </div>
+													
+													<!--第一部分-->
+													<div class="tab-pane active" id="account">
+														<!--文章标题-->
+														<div class="form-group">
+															<label class="control-label col-md-3">文章标题:<span class="required">*</span></label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" name="title" value="" placeholder="请填写文章标题"/>
+																<span class="error-span"></span>
+															</div>
+														</div>
+														<!--副标题-->
+														<div class="form-group">
+															<label class="control-label col-md-3">文章副标题:<span class="required">*</span></label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" name="subtitle" value="" placeholder="请填写文章副标题"/>
+																<span class="error-span"></span> </div>
+														</div>
+														<!--作者-->
+														<div class="form-group">
+															<label class="control-label col-md-3">文章作者:<span class="required">*</span></label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" name="author" placeholder="请填写文章作者"/>
+																<span class="error-span"></span> </div>
+														</div>
+														<!--所属栏目-->
+														<div class="form-group">
+															<label class="col-sm-3 control-label">所属栏目:<span class="required">*</span></label>
+															<div class="col-sm-3">
+																<select class="form-control" name="cateid">
+																	<{*顶级分类pid=0，子分类pid=父级id   path+pid*}>
+																	<option value="0">--请选择栏目--</option>
+																	<{foreach $categoryinfo as $val}>
+																		<option value="<{$val['id']}>"><{$val['category_name']}></option>
+																	<{/foreach}>
+																</select>																			
+															</div>
+														</div>
+														<!--浏览权限-->
+														<div class="form-group">
+															<label class="col-sm-3 control-label">浏览角色:<span class="required">*</span></label>
+															<div class="col-sm-3">
+																<select class="form-control" name="role">
+																	<option>--请选择组--</option>
+																	<{foreach $roleinfo as $val}>
+																	<option value="<{$val['id']}>"><{$val['rolename']}></option>
+																	<{/foreach}>
+																</select>																			
+															</div>
+														</div>
+														<!--内容来源-->
+														<div class="form-group">
+															<label class="control-label col-md-3">文章内容来源:<span class="required">*</span></label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" name="source" value="" placeholder="请填写文章内容来源"/>
+																<span class="error-span"></span> </div>
+														</div>
+														<!--点击量-->
+														<div class="form-group">
+															<label class="control-label col-md-3">默认点击量:<span class="required">*</span></label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" name="click" value="" placeholder="默认点击量为0"/>
+																<span class="error-span"></span> </div>
+														</div>
+														<!--标签-->
+														<div class="form-group">
+															<label class="control-label col-md-3">文章标签:<span class="required">*</span></label>
+															<div class="col-md-4">
+																<input type="text" class="form-control" name="tag" value="" placeholder="多个文章标签用英文逗号隔开"/>
+																<span class="error-span"></span> </div>
+														</div>
+														<!--图片-->
+														<div class="form-group">
+															<label class="col-sm-3 control-label">图片:</label>
+															<div class="row fileupload-buttonbar">
+																<div class="col-sm-5">
+																	<!-- The fileinput-button span is used to style the file input field as button -->
+																	<span class="btn btn-success fileinput-button">
+																		<i class="fa fa-plus"></i>
+																		<span>Add files...</span>
+																		<input type="file" name="pic" multiple />
+																	</span>
+																</div>
+															</div>
+														</div>
+							
+														<!--推荐-->
+														<div class="form-group">
+															<label class="col-md-3 control-label">推荐:</label> 
+															<div class="col-md-4"> 
+																<label class="checkbox-inline">
+																	<input type="checkbox" id="inlineCheckbox1" name="recommend[]" value="1"> 默认
+																</label>
+																<label class="checkbox-inline">
+																	<input type="checkbox" id="inlineCheckbox2" name="recommend[]" value="2"> 热门
+																</label>
+																<label class="checkbox-inline">
+																	<input type="checkbox" id="inlineCheckbox3" name="recommend[]" value="3"> 首页
+																</label>
+																<label class="checkbox-inline">
+																	<input type="checkbox" id="inlineCheckbox4" name="recommend[]" value="4"> 列表页
+																</label>
+															</div>
+														</div>
+														<!--状态-->
+														<div class="form-group">
+															<label class="col-md-3 control-label">状态:</label> 
+															<div class="col-md-4"> 
+																<label class="radio-inline"> <input type="radio" class="uniform" name="status" value="y" checked> Yes </label> 
+																<label class="radio-inline"> <input type="radio" class="uniform" name="status" value="n"> No </label>
+															</div>
+														</div>
+													</div>
+													<!--第二个部分-->
+													<div class="tab-pane" id="payment">
+														<!--摘要-->
+														<div class="form-group">
+															<label class="col-sm-2 control-label">摘要:</label>
+															<div class="col-sm-6">
+																<textarea name="abstract" id='content_number' class="form-control" rows="3"></textarea>
+															</div>
+														</div>
+														<!--内容摘要-->
+														<div class="form-group">
+															<label class="control-label col-md-2">主体内容:<span class="required">*</span></label>
+															<div class="col-md-9">
+																<textarea name="content" style="width:95%;height:300px;visibility:hidden;"></textarea>
+																<span class="error-span"></span>
+															</div>
+														</div>
+													</div>
+													
+													<!--第三部分-->
+													<!--div class="tab-pane" id="confirm">
+														<h4 class="form-section">文章明细列表</h4>
+														<div class="well">
+															<div class="form-group">
+																<label class="control-label col-md-3">文章标题:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="email"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">副标题:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="article_subtitle"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">作者:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="article_author"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">所属栏目:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="pid"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">浏览权限:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="permissions"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">内容来源:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="article_source"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">点击量:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="article_click"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">标签:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="article_label"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">图片:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="article_pic[]"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">推荐:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="recommend[]"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">状态:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="status"></p>
+																</div>
+															</div>
+														</div>
+														<h4 class="form-section">文章主题内容部分</h4>
+														<div class="well">
+															<div class="form-group">
+																<label class="control-label col-md-3">摘要:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="abstract"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-md-3">主体内容:</label>
+																<div class="col-md-4">
+																	<p class="form-control-static" data-display="content"></p>
+																</div>
+															</div>
+														</div-->
+													</div>
+												</div>
+											</div>
+											<div class="wizard-buttons">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="col-md-offset-3 col-md-9">
+															<a href="javascript:;" class="btn btn-default prevBtn"> <i class="fa fa-arrow-circle-left"></i> Back </a> 
+															<a href="javascript:;" class="btn btn-primary nextBtn"> Continue <i class="fa fa-arrow-circle-right"></i> </a> 
+															<button class="btn btn-primary submitBtn" type="submit"> Submit <i class="fa fa-arrow-circle-right"></i></button>
+															<!--a href="javascript:;" class="btn btn-success submitBtn"><input type="submit"> Submit <i class="fa fa-arrow-circle-right"></i> </a--> 
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<!-- /BOX --> 
+						</div>
+					</div>
+					<!-- /SAMPLE -->
+					<div class="footer-tools"> <span class="go-top"> <i class="fa fa-chevron-up"></i> Top </span> </div>
+				</div>
+				<!-- /CONTENT--> 
+			</div>
+		</div>
+	</div>
+</section>
+<!--/PAGE --> 
+<!-- JAVASCRIPTS --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<!-- JQUERY --> 
+<script src="/public/admin/js/jquery/jquery-2.0.3.min.js"></script> 
+<!-- JQUERY UI--> 
+<script src="/public/admin/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script> 
+<!-- BOOTSTRAP --> 
+<script src="/public/admin/bootstrap-dist/js/bootstrap.min.js"></script> 
+
+<!-- DATE RANGE PICKER --> 
+<script src="/public/admin/js/bootstrap-daterangepicker/moment.min.js"></script> 
+<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.min.js"></script> 
+<!-- SLIMSCROLL --> 
+<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/public/admin/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script> 
+<!-- BLOCK UI --> 
+<script type="text/javascript" src="/public/admin/js/jQuery-BlockUI/jquery.blockUI.min.js"></script> 
+<!-- SELECT2 --> 
+<script type="text/javascript" src="/public/admin/js/select2/select2.min.js"></script> 
+<!-- UNIFORM --> 
+<script type="text/javascript" src="/public/admin/js/uniform/jquery.uniform.min.js"></script> 
+<!-- WIZARD 表单验证--> 
+<script src="/public/admin/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script> 
+<!-- WIZARD --> 
+<script src="/public/admin/js/jquery-validate/jquery.validate.min.js"></script> 
+<script src="/public/admin/js/jquery-validate/additional-methods.min.js"></script> 
+<!-- BOOTBOX --> 
+<script type="text/javascript" src="/public/admin/js/bootbox/bootbox.min.js"></script> 
+<!-- COOKIE --> 
+<script type="text/javascript" src="/public/admin/js/jQuery-Cookie/jquery.cookie.min.js"></script> 
+<!-- CUSTOM SCRIPT --> 
+<script src="/public/admin/js/script.js"></script> 
+<!--script src="/public/admin/js/bootstrap-wizard/form-wizard.js"></script--> 
+<script src="/public/admin/js/bootstrap-wizard/form-article.js"></script> 
+
+<!--提示文字-->
+<script src="/public/js/nhx_number.js"></script>	
+	
+<script>
+	jQuery(document).ready(function() {		
+		App.setPage("wizards_validations");  //Set current page
+		App.init(); //Initialise plugins and elements
+		FormWizard.init();
+	});
+</script> 
+<!-- /JAVASCRIPTS -->
+<script>
+	//1.word编辑器调用的JS
+	KindEditor.ready(function(K) {
+		var editor1 = K.create('textarea[name="content"]', {
+			cssPath : '/public/kindeditor/css/prettify.css',
+			uploadJson : '/public/kindeditor/php/upload_json.php',
+			fileManagerJson : '/public/kindeditor/php/file_manager_json.php',
+			allowFileManager : true,
+			afterCreate : function() {
+				var self = this;
+				K.ctrl(document, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+				K.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					K('form[name=example]')[0].submit();
+				});
+			}
+		});
+		prettyPrint();
+	});
+</script>
+</body>
+</html>
